@@ -121,52 +121,120 @@ Each record includes data quality indicators:
 
 Each variable also has accompanying `*_interpolated` and `*_missing_data_interpolated` flags to indicate if that specific value was interpolated.
 
-## Variable Categories
-
-The pipeline processes over 80 variables across multiple categories:
+## Variable Details and Units
 
 ### Demographic Variables
-- total_population, male_population, female_population
-- median_age, population_under_18, population_65_over
-- white_nonhispanic_pct, black_pct, hispanic_latino_pct, asian_pct, native_american_pct
-- population_density
+| Variable | Units | Description | Source | Notes |
+|----------|-------|-------------|--------|-------|
+| total_population | count | Total county population | Census, ACS | No scaling applied |
+| male_population | count | Male population | Census, ACS | No scaling applied |
+| female_population | count | Female population | Census, ACS | No scaling applied |
+| median_age | years | Median age of population | Census, ACS | |
+| population_under_18 | count | Population under 18 years of age | Census, ACS | No scaling applied |
+| population_65_over | count | Population 65 years and older | Census, ACS | No scaling applied |
+| white_nonhispanic_pct | percentage | Percentage of population that is non-Hispanic white | Census, ACS | Range: 0-100 |
+| black_pct | percentage | Percentage of population that is Black or African American | Census, ACS | Range: 0-100 |
+| hispanic_latino_pct | percentage | Percentage of population that is Hispanic or Latino | Census, ACS | Range: 0-100 |
+| asian_pct | percentage | Percentage of population that is Asian | Census, ACS | Range: 0-100 |
+| native_american_pct | percentage | Percentage of population that is American Indian or Alaska Native | Census, ACS | Range: 0-100 |
+| population_density | people/sq mile | Population per square mile | Derived | Calculated from population and land area |
 
 ### Socioeconomic Variables
-- median_household_income, median_earnings, poverty_rate
-- gini_index, snap_benefits_pct, food_insecurity_pct
-- less_than_highschool_pct, highschool_only_pct, some_college_pct, bachelors_or_higher_pct
-- unemployment_rate, labor_force_participation
+| Variable | Units | Description | Source | Notes |
+|----------|-------|-------------|--------|-------|
+| median_household_income | dollars | Median household income | ACS | Not adjusted for inflation |
+| median_earnings | dollars | Median earnings for workers | ACS | Not adjusted for inflation |
+| poverty_rate | percentage | Percentage of population below poverty level | ACS | Range: 0-100 |
+| gini_index | index | Measure of income inequality | ACS | Range: 0-1, higher values indicate more inequality |
+| snap_benefits_pct | percentage | Percentage of households receiving SNAP benefits | ACS | Range: 0-100 |
+| food_insecurity_pct | percentage | Percentage of population with food insecurity | CDC PLACES | Range: 0-100 |
+| less_than_highschool_pct | percentage | Percentage with less than high school education | ACS | Range: 0-100, adults 25+ |
+| highschool_only_pct | percentage | Percentage with high school as highest education | ACS | Range: 0-100, adults 25+ |
+| some_college_pct | percentage | Percentage with some college education | ACS | Range: 0-100, adults 25+ |
+| bachelors_or_higher_pct | percentage | Percentage with bachelor's degree or higher | ACS | Range: 0-100, adults 25+ |
+| unemployment_rate | percentage | Unemployment rate | ACS, BLS | Range: 0-100 |
+| labor_force_participation | percentage | Labor force participation rate | ACS | Range: 0-100, population 16+ |
 
 ### Housing Variables
-- median_home_value, median_gross_rent, homeownership_rate
-- vacant_housing_rate, severe_housing_cost_burden, overcrowded_housing_pct
-- housing_no_kitchen_pct, housing_no_plumbing_pct
-- severe_housing_problems
+| Variable | Units | Description | Source | Notes |
+|----------|-------|-------------|--------|-------|
+| median_home_value | dollars | Median value of owner-occupied housing units | ACS | Not adjusted for inflation |
+| median_gross_rent | dollars | Median gross rent | ACS | Not adjusted for inflation |
+| homeownership_rate | percentage | Percentage of occupied housing units that are owner-occupied | ACS | Range: 0-100 |
+| vacant_housing_rate | percentage | Percentage of housing units that are vacant | ACS | Range: 0-100 |
+| severe_housing_cost_burden | percentage | Percentage of households spending >50% of income on housing | ACS | Range: 0-100 |
+| overcrowded_housing_pct | percentage | Percentage of housing units with >1 person per room | ACS | Range: 0-100 |
+| housing_no_kitchen_pct | percentage | Percentage of housing units lacking complete kitchen facilities | ACS | Range: 0-100 |
+| housing_no_plumbing_pct | percentage | Percentage of housing units lacking complete plumbing facilities | ACS | Range: 0-100 |
+| severe_housing_problems | percentage | Percentage of households with at least 1 of 4 housing problems | CDC PLACES | Range: 0-100 |
 
 ### Transportation Variables
-- mean_commute_time, commute_public_transit_pct, commute_carpool_pct
-- commute_walking_pct, commute_long_pct, no_vehicle_households_pct
+| Variable | Units | Description | Source | Notes |
+|----------|-------|-------------|--------|-------|
+| mean_commute_time | minutes | Mean commute time to work | ACS | One-way commute |
+| commute_public_transit_pct | percentage | Percentage of workers using public transit | ACS | Range: 0-100 |
+| commute_carpool_pct | percentage | Percentage of workers carpooling | ACS | Range: 0-100 |
+| commute_walking_pct | percentage | Percentage of workers walking to work | ACS | Range: 0-100 |
+| commute_long_pct | percentage | Percentage with commute >60 minutes | ACS | Range: 0-100 |
+| no_vehicle_households_pct | percentage | Percentage of households with no vehicle available | ACS | Range: 0-100 |
 
 ### Health Insurance Variables
-- uninsured_pct, private_health_insurance_pct, public_health_insurance_pct
-- medicaid_pct, medicare_pct, no_health_insurance_pct
+| Variable | Units | Description | Source | Notes |
+|----------|-------|-------------|--------|-------|
+| uninsured_pct | percentage | Percentage of population without health insurance | ACS | Range: 0-100 |
+| private_health_insurance_pct | percentage | Percentage with private health insurance | ACS | Range: 0-100 |
+| public_health_insurance_pct | percentage | Percentage with public health insurance | ACS | Range: 0-100 |
+| medicaid_pct | percentage | Percentage enrolled in Medicaid | ACS | Range: 0-100 |
+| medicare_pct | percentage | Percentage enrolled in Medicare | ACS | Range: 0-100 |
+| no_health_insurance_pct | percentage | Percentage without health insurance | CDC PLACES | Range: 0-100 |
 
 ### Health Status Variables
-- life_expectancy, obesity_pct, smoking_pct, diabetes_pct
-- physical_inactivity_pct, poor_mental_health_pct, poor_physical_health_pct
-- high_blood_pressure_pct, high_cholesterol_pct, asthma_pct, copd_pct
-- coronary_heart_disease_pct, kidney_disease_pct, stroke_pct, cancer_pct
-- depression_pct, arthritis_pct, annual_checkup_pct, dental_visit_pct
+| Variable | Units | Description | Source | Notes |
+|----------|-------|-------------|--------|-------|
+| life_expectancy | years | Life expectancy at birth | IHME | |
+| obesity_pct | percentage | Percentage of adults with obesity (BMI ≥ 30) | CDC PLACES | Range: 0-100, age-adjusted |
+| smoking_pct | percentage | Percentage of adults who smoke | CDC PLACES | Range: 0-100, age-adjusted |
+| diabetes_pct | percentage | Percentage of adults with diagnosed diabetes | CDC PLACES | Range: 0-100, age-adjusted |
+| physical_inactivity_pct | percentage | Percentage of adults with no leisure-time physical activity | CDC PLACES | Range: 0-100, age-adjusted |
+| poor_mental_health_pct | percentage | Percentage reporting poor mental health for ≥14 days in past month | CDC PLACES | Range: 0-100, age-adjusted |
+| poor_physical_health_pct | percentage | Percentage reporting poor physical health for ≥14 days in past month | CDC PLACES | Range: 0-100, age-adjusted |
+| high_blood_pressure_pct | percentage | Percentage of adults with high blood pressure | CDC PLACES | Range: 0-100, age-adjusted |
+| high_cholesterol_pct | percentage | Percentage of adults with high cholesterol | CDC PLACES | Range: 0-100, age-adjusted |
+| asthma_pct | percentage | Percentage of adults with asthma | CDC PLACES | Range: 0-100, age-adjusted |
+| copd_pct | percentage | Percentage of adults with COPD | CDC PLACES | Range: 0-100, age-adjusted |
+| coronary_heart_disease_pct | percentage | Percentage of adults with coronary heart disease | CDC PLACES | Range: 0-100, age-adjusted |
+| kidney_disease_pct | percentage | Percentage of adults with kidney disease | CDC PLACES | Range: 0-100, age-adjusted |
+| stroke_pct | percentage | Percentage of adults who have had a stroke | CDC PLACES | Range: 0-100, age-adjusted |
+| cancer_pct | percentage | Percentage of adults with cancer (excluding skin cancer) | CDC PLACES | Range: 0-100, age-adjusted |
+| depression_pct | percentage | Percentage of adults with depression | CDC PLACES | Range: 0-100, age-adjusted |
+| arthritis_pct | percentage | Percentage of adults with arthritis | CDC PLACES | Range: 0-100, age-adjusted |
+| annual_checkup_pct | percentage | Percentage who had a routine checkup in past year | CDC PLACES | Range: 0-100, age-adjusted |
+| dental_visit_pct | percentage | Percentage who visited a dentist in past year | CDC PLACES | Range: 0-100, age-adjusted |
 
 ### Social Context Variables
-- single_parent_households_pct, limited_english_pct, non_english_home_pct
-- broadband_access_pct, internet_access_pct, computer_access_pct
-- grandparents_caregivers_pct, binge_drinking_pct, insufficient_sleep_pct
-- air_pollution_pm25
+| Variable | Units | Description | Source | Notes |
+|----------|-------|-------------|--------|-------|
+| single_parent_households_pct | percentage | Percentage of households with single parent | ACS | Range: 0-100 |
+| limited_english_pct | percentage | Percentage of households with limited English | ACS | Range: 0-100 |
+| non_english_home_pct | percentage | Percentage speaking language other than English at home | ACS | Range: 0-100 |
+| broadband_access_pct | percentage | Percentage of households with broadband internet | ACS | Range: 0-100 |
+| internet_access_pct | percentage | Percentage of households with internet access | ACS | Range: 0-100 |
+| computer_access_pct | percentage | Percentage of households with a computer | ACS | Range: 0-100 |
+| grandparents_caregivers_pct | percentage | Percentage of grandparents responsible for grandchildren | ACS | Range: 0-100 |
+| binge_drinking_pct | percentage | Percentage of adults reporting binge drinking | CDC PLACES | Range: 0-100, age-adjusted |
+| insufficient_sleep_pct | percentage | Percentage of adults with insufficient sleep (<7 hours) | CDC PLACES | Range: 0-100, age-adjusted |
+| air_pollution_pm25 | μg/m³ | Annual average ambient PM2.5 concentration | CDC PLACES | Micrograms per cubic meter |
 
 ### Disability Variables
-- disability_pct, disability_under_18_pct, disability_18_64_pct, disability_65_over_pct
-- cognitive_disability_pct, ambulatory_disability_pct, independent_living_disability_pct
+| Variable | Units | Description | Source | Notes |
+|----------|-------|-------------|--------|-------|
+| disability_pct | percentage | Percentage of population with a disability | ACS | Range: 0-100 |
+| disability_under_18_pct | percentage | Percentage under 18 with a disability | ACS | Range: 0-100 |
+| disability_18_64_pct | percentage | Percentage 18-64 with a disability | ACS | Range: 0-100 |
+| disability_65_over_pct | percentage | Percentage 65+ with a disability | ACS | Range: 0-100 |
+| cognitive_disability_pct | percentage | Percentage with cognitive difficulty | ACS | Range: 0-100 |
+| ambulatory_disability_pct | percentage | Percentage with ambulatory difficulty | ACS | Range: 0-100 |
+| independent_living_disability_pct | percentage | Percentage with independent living difficulty | ACS | Range: 0-100 |
 
 ## Maps and Visualization
 
@@ -203,6 +271,134 @@ To enable simulation for testing (not recommended for production):
 ```bash
 Rscript main_extended.r --allow-simulation
 ```
+
+## DuckDB Database Structure and Access
+
+The pipeline stores data in a DuckDB database, which is a high-performance analytical database system designed for analytical workloads. The database file is stored as `us_county_sdoh_data.duckdb`.
+
+### Database Tables
+
+The database contains the following main tables:
+
+- `county_sdoh_data`: Main data table with all variables by county and year
+- `county_metadata`: Information about each county
+- `data_dictionary`: Descriptions and metadata for each variable
+- `variable_crosswalk`: Mapping between standardized variable names and source-specific codes
+- `data_quality_summary`: Summary of data completeness by year and source
+- `data_quality_detailed`: Detailed information about interpolation and extension
+
+### Database Views
+
+The database includes several prebuilt views:
+
+- `latest_county_data`: The most recent data available for each county
+- `county_time_series`: All years of data for all counties
+- `county_health_metrics`: Health-specific metrics for all counties
+- Several category-specific views (demographics, socioeconomic, etc.)
+
+### Accessing DuckDB from Different Languages
+
+#### From R
+
+```r
+# Using DBI package
+library(DBI)
+library(duckdb)
+
+# Connect to the database
+con <- dbConnect(duckdb::duckdb(), "path/to/us_county_sdoh_data.duckdb", read_only = TRUE)
+
+# Query data
+result <- dbGetQuery(con, "SELECT * FROM latest_county_data WHERE poverty_rate < 10")
+
+# List tables
+tables <- dbListTables(con)
+
+# Disconnect when done
+dbDisconnect(con)
+```
+
+#### From Python
+
+```python
+# Using duckdb package
+import duckdb
+import pandas as pd
+
+# Connect to the database
+conn = duckdb.connect("path/to/us_county_sdoh_data.duckdb", read_only=True)
+
+# Query data (returns pandas DataFrame)
+df = conn.execute("SELECT * FROM latest_county_data WHERE poverty_rate < 10").fetchdf()
+
+# List tables
+tables = conn.execute("SHOW TABLES").fetchall()
+
+# Close connection when done
+conn.close()
+```
+
+#### From Julia
+
+```julia
+# Using DuckDB.jl package
+using DuckDB
+using DataFrames
+
+# Connect to the database
+conn = DBInterface.connect(DuckDB.DB, "path/to/us_county_sdoh_data.duckdb")
+
+# Query data
+df = DataFrame(DBInterface.execute(conn, "SELECT * FROM latest_county_data WHERE poverty_rate < 10"))
+
+# List tables
+tables = DataFrame(DBInterface.execute(conn, "SHOW TABLES"))
+
+# Close connection when done
+DBInterface.close!(conn)
+```
+
+### SQL Example Queries
+
+```sql
+-- Get the counties with the highest poverty rates
+SELECT GEOID, NAME, year, poverty_rate 
+FROM latest_county_data 
+WHERE poverty_rate IS NOT NULL 
+ORDER BY poverty_rate DESC 
+LIMIT 10;
+
+-- Compare health metrics between counties with high and low education levels
+SELECT 
+  CASE 
+    WHEN bachelors_or_higher_pct > 40 THEN 'High Education' 
+    WHEN bachelors_or_higher_pct < 15 THEN 'Low Education'
+    ELSE 'Medium Education'
+  END as education_group,
+  COUNT(*) as county_count,
+  AVG(life_expectancy) as avg_life_expectancy,
+  AVG(obesity_pct) as avg_obesity_rate,
+  AVG(smoking_pct) as avg_smoking_rate
+FROM latest_county_data
+WHERE bachelors_or_higher_pct IS NOT NULL
+  AND life_expectancy IS NOT NULL
+GROUP BY education_group
+ORDER BY education_group;
+
+-- Track poverty rate over time for a specific county
+SELECT year, poverty_rate
+FROM county_sdoh_data
+WHERE GEOID = '06037' -- Los Angeles County
+ORDER BY year;
+```
+
+### DuckDB Performance Tips
+
+1. **Use Filters Early**: Apply WHERE clauses to filter data as early as possible
+2. **Avoid SELECT ***: Only select the columns you need
+3. **Use Prepared Statements**: For repeated queries with different parameters
+4. **Use Views**: Leverage the pre-built views for common queries
+5. **Consider Parallelism**: DuckDB can utilize multiple cores for query execution
 
 ## Troubleshooting
 
