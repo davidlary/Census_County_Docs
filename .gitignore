@@ -1,0 +1,37 @@
+# R specific
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+
+# Log files
+*.log
+logs/*.log
+
+# Large data files
+data/cache/
+data/ihme/CSV/*.CSV
+data/ihme/Zip/*.zip
+data/nhgis/*.CSV
+data/seer/*.gz
+*.rds
+*.csv
+*.csv.gz
+*.duckdb
+*.duckdb*
+*.tar.gz
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*~
+*.swp
+*.tmp
+file-list.txt
+download_instructions.md
+
+# Let's keep README.md in output/maps
+!README.md
